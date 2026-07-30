@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ShellCheck scripts
+        run: shellcheck scripts/*.sh postgres/*.sh backup/*.sh
+
+      - name: Validate Caddy configuration
+        run: |
+          docker run --rm \
+            -v "$PWD/caddy/Caddyfile:/etc/caddy/Caddyfile:ro" \
+            -v "$PWD/caddy/sites:/etc/caddy/sites:ro" \
+            caddy:2 caddy validate --adapter caddyfile --config /etc/caddy/Caddyfile
+
+      - name: Validate infra compose
+        run: |
+          cp .env.example .env
+          sudo install -d -m 0750 /etc/bwinkeler
+          sudo install -m 0600 templates/infra.env.example /etc/bwinkeler/infra.env
+          docker compose --env-file .env -f compose.prod.yaml config >/dev/null
+
+      - name: Lint workflows (actionlint)
+        run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:latest -color
