@@ -1,0 +1,11 @@
+# Normalize to LF so shell scripts run on the Linux host regardless of the
+# workstation OS.
+* text=auto eol=lf
+
+*.sh text eol=lf
+Caddyfile text eol=lf
+*.caddy text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.env.example text eol=lf

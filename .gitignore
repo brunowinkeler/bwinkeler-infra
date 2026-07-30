@@ -1,0 +1,28 @@
+# --- Secrets: never commit real environment values -------------------------
+# Only files ending in .example are tracked; real env/secret files are ignored.
+.env
+*.env
+!*.env.example
+
+# Anything under a local secrets/ working dir.
+secrets/
+
+# --- Backup / restore artifacts ---------------------------------------------
+backup/out/
+restore-work/
+*.dump
+*.sql
+*.sql.gz
+*.age
+*.gpg
+*.sha256
+
+# --- Caddy runtime data (only exists on the host) ---------------------------
+caddy/data/
+caddy/config/
+
+# --- OS / editor noise ------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*~

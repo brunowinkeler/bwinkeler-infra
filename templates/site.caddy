@@ -1,0 +1,35 @@
+# Template — copy to caddy/sites/<service_id>.caddy and replace the
+# placeholders. Same-origin frontend + API + WebSocket for one application
+# (ARCHITECTURE.md §9). Never add caching for /api or /ws.
+#
+#   <service_id>   short DNS-safe id, e.g. shopping
+#   <api_port>     backend internal port, e.g. 8080
+#   <web_port>     frontend internal port, e.g. 80
+<service_id>.bwinkeler.com {
+	encode zstd gzip
+
+	@websocket path /ws /ws/*
+	handle @websocket {
+		reverse_proxy <service_id>-api:<api_port>
+	}
+
+	@api path /api /api/*
+	handle @api {
+		reverse_proxy <service_id>-api:<api_port>
+	}
+
+	handle {
+		reverse_proxy <service_id>-web:<web_port>
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

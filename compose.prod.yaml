@@ -1,0 +1,78 @@
+name: bw-infra
+
+# Shared platform infrastructure: the single public Caddy reverse proxy and the
+# shared PostgreSQL instance. Owned by bwinkeler-infra (ARCHITECTURE.md §8).
+#
+# NOT here: application containers, published database ports, `latest` tags, or
+# any secret value. Applications run from their own compose projects and reach
+# these services over the external `bw-edge` / `bw-data` networks.
+#
+# Image versions come from `.env` (copy .env.example). The PostgreSQL superuser
+# credentials come from /etc/bwinkeler/infra.env on the host and are never
+# committed. Create the external networks first: scripts/create-networks.sh.
+
+services:
+  caddy:
+    image: caddy:${CADDY_VERSION:?CADDY_VERSION required (copy .env.example to .env)}
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/sites:/etc/caddy/sites:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      edge:
+        aliases:
+          - bw-caddy
+    healthcheck:
+      test: ['CMD', 'caddy', 'version']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    stop_grace_period: 15s
+    # mem_limit: 256m   # set after measuring (ARCHITECTURE.md §21.1)
+
+  postgres:
+    image: postgres:${POSTGRES_VERSION:?POSTGRES_VERSION required (copy .env.example to .env)}
+    restart: unless-stopped
+    env_file:
+      # Superuser credentials (POSTGRES_USER/POSTGRES_PASSWORD/POSTGRES_DB).
+      # Provisioned on the host, mode 0600, never in Git. See templates/infra.env.example.
+      - /etc/bwinkeler/infra.env
+    shm_size: 256mb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      data:
+        aliases:
+          - bw-postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    stop_grace_period: 30s
+    # mem_limit: 1g     # set after measuring; leave headroom on a 4 GB VPS
+
+networks:
+  # Ingress network shared with each application's web/api. Created by the infra.
+  edge:
+    external: true
+    name: bw-edge
+  # Data network shared with each application's api/migrate + the backup job.
+  data:
+    external: true
+    name: bw-data
+
+volumes:
+  caddy-data:
+    name: bw-caddy-data
+  caddy-config:
+    name: bw-caddy-config
+  postgres-data:
+    name: bw-postgres-data

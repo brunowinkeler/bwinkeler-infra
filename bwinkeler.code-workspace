@@ -1,0 +1,15 @@
+{
+	// Multi-root workspace for the bwinkeler platform. Versioned in the infra
+	// repo with relative paths (ARCHITECTURE.md §4.1). Open this file directly;
+	// do not also add the parent aggregator folder as a root.
+	"folders": [
+		{ "name": "infra", "path": "." },
+		{ "name": "lists", "path": "../bwinkeler-lists" },
+		{ "name": "portfolio", "path": "../bwinkeler-portfolio" }
+	],
+	"settings": {
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true,
+		"files.eol": "\n"
+	}
+}

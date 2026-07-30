@@ -1,0 +1,10 @@
+{
+	# Operations email used for ACME/Let's Encrypt certificates.
+	# Change to a real, monitored address before the first deploy.
+	email {$ACME_EMAIL:admin@bwinkeler.com}
+}
+
+# One fragment per public hostname lives in ./sites and is mounted read-only at
+# /etc/caddy/sites. Each application requests its route in its SERVICE_MANIFEST;
+# the infrastructure owns and reviews the fragment (ARCHITECTURE.md §9.1).
+import /etc/caddy/sites/*.caddy

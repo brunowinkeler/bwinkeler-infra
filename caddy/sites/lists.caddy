@@ -1,0 +1,41 @@
+# lists.bwinkeler.com — BWinkeler Lists (service_id: lists)
+#
+# Same-origin frontend + API + WebSocket (ARCHITECTURE.md §9.3–§9.5).
+# Upstream aliases resolve on the shared bw-edge network:
+#   lists-web:80    static React SPA (served by Caddy inside the image)
+#   lists-api:8080  Fastify HTTP API (/api) and WebSocket (/ws)
+# Contract: bwinkeler-lists/docs/SERVICE_MANIFEST.md
+lists.bwinkeler.com {
+	encode zstd gzip
+
+	# WebSocket first so it is not captured by the /api matcher.
+	@websocket path /ws /ws/*
+	handle @websocket {
+		reverse_proxy lists-api:8080
+	}
+
+	# HTTP API. The prefix is preserved; the backend expects /api.
+	@api path /api /api/*
+	handle @api {
+		reverse_proxy lists-api:8080
+	}
+
+	# Everything else is the SPA (with its own index.html fallback).
+	handle {
+		reverse_proxy lists-web:80
+	}
+
+	# Baseline headers; the application owns its CSP. Do not add caching for
+	# /api or /ws (ARCHITECTURE.md §9.5). HSTS is intentionally omitted until all
+	# subdomains are HTTPS.
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
