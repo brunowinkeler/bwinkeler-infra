@@ -28,8 +28,11 @@ jobs:
       - name: Validate infra compose
         run: |
           cp .env.example .env
-          sudo install -d -m 0750 /etc/bwinkeler
-          sudo install -m 0600 templates/infra.env.example /etc/bwinkeler/infra.env
+          # CI only: `docker compose` runs as the non-root runner here, so the
+          # placeholder env file (no real secrets) is installed world-readable.
+          # On the host this file holds the DB superuser password at mode 0600.
+          sudo install -d -m 0755 /etc/bwinkeler
+          sudo install -m 0644 templates/infra.env.example /etc/bwinkeler/infra.env
           docker compose --env-file .env -f compose.prod.yaml config >/dev/null
 
       - name: Lint workflows (actionlint)
