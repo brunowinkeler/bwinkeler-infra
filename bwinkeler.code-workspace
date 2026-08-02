@@ -5,7 +5,9 @@
 	"folders": [
 		{ "name": "infra", "path": "." },
 		{ "name": "lists", "path": "../bwinkeler-lists" },
-		{ "name": "portfolio", "path": "../bwinkeler-portfolio" }
+		{ "name": "portfolio", "path": "../bwinkeler-portfolio" },
+		{ "name": "physics", "path": "../bwinkeler-physics" },
+		{ "name": "physics-native", "path": "../cpp-physics-simulation" }
 	],
 	"settings": {
 		"files.trimTrailingWhitespace": true,

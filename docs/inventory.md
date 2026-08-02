@@ -30,11 +30,18 @@ External networks (infra-owned): `bw-edge`, `bw-data`.
 
 App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`.
 
+## Cloudflare Pages applications
+
+| Service ID | Domain | Pages project | Repository | Persistent state | VPS dependency | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| `physics` | `physics.bwinkeler.com` | `bwinkeler-physics` | `brunowinkeler/bwinkeler-physics` | none | none | onboarding |
+
 ## DNS (Cloudflare)
 
 | Record | Target | Proxy | Notes |
 | --- | --- | --- | --- |
 | `bwinkeler.com` | Cloudflare Pages | — | portfolio |
+| `physics.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; no VPS or Caddy route |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
 
 ## Backups
