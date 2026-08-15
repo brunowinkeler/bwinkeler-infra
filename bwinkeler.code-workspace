@@ -4,6 +4,7 @@
 	// do not also add the parent aggregator folder as a root.
 	"folders": [
 		{ "name": "infra", "path": "." },
+		{ "name": "keyplay", "path": "../bwinkeler-keyplay" },
 		{ "name": "lists", "path": "../bwinkeler-lists" },
 		{ "name": "portfolio", "path": "../bwinkeler-portfolio" },
 		{ "name": "physics", "path": "../bwinkeler-physics" },
