@@ -35,7 +35,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | Service ID | Domain | Pages project | Repository | Persistent state | VPS dependency | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | `physics` | `physics.bwinkeler.com` | `bwinkeler-physics` | `brunowinkeler/bwinkeler-physics` | none | none | onboarding |
-| `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | deployed (`bwinkeler-keyplay.pages.dev`); custom domain pending |
+| `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | active |
 
 ## DNS (Cloudflare)
 
@@ -43,7 +43,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | --- | --- | --- | --- |
 | `bwinkeler.com` | Cloudflare Pages | — | portfolio |
 | `physics.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; no VPS or Caddy route |
-| `play.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; no VPS or Caddy route |
+| `play.bwinkeler.com` | Cloudflare Pages | — | active custom domain; no VPS or Caddy route |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
 
 ## Backups
@@ -55,3 +55,16 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 ## Cloudflare cache rules
 
 None configured. Document any rule here (ARCHITECTURE.md §10.4).
+
+### Open item: browser cache TTL on custom domains
+
+The zone raises the browser TTL of static responses whose origin TTL is shorter,
+so `https://play.bwinkeler.com/sw.js` answers `max-age=14400` while
+`https://bwinkeler-keyplay.pages.dev/sw.js` keeps the `no-cache` value from the
+application `_headers` file. A cached service worker delays an update by up to
+four hours.
+
+Fix by either setting **Caching › Configuration › Browser Cache TTL** to
+*Respect Existing Headers* for the zone, or adding a cache rule for
+`play.bwinkeler.com` paths `/sw.js` and `/manifest.webmanifest` with browser TTL
+*Respect origin*. Record the chosen rule in the table above.
