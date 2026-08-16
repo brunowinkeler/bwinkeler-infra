@@ -35,7 +35,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | Service ID | Domain | Pages project | Repository | Persistent state | VPS dependency | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | `physics` | `physics.bwinkeler.com` | `bwinkeler-physics` | `brunowinkeler/bwinkeler-physics` | none | none | onboarding |
-| `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | onboarding |
+| `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | deployed (`bwinkeler-keyplay.pages.dev`); custom domain pending |
 
 ## DNS (Cloudflare)
 
