@@ -45,7 +45,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | `bwinkeler.com` | Cloudflare Pages | — | portfolio |
 | `physics.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; no VPS or Caddy route |
 | `play.bwinkeler.com` | Cloudflare Pages | — | active custom domain; no VPS or Caddy route |
-| `practice.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; not registered yet, so the name is still negotiable |
+| `practice.bwinkeler.com` | Cloudflare Pages | — | not registered yet; the project serves `bwinkeler-practice.pages.dev` and the name is still negotiable |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
 
 ## Backups
