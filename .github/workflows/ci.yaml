@@ -13,7 +13,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: ShellCheck scripts
         run: shellcheck scripts/*.sh postgres/*.sh backup/*.sh
