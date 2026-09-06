@@ -8,7 +8,8 @@
 		{ "name": "lists", "path": "../bwinkeler-lists" },
 		{ "name": "portfolio", "path": "../bwinkeler-portfolio" },
 		{ "name": "physics", "path": "../bwinkeler-physics" },
-		{ "name": "physics-native", "path": "../cpp-physics-simulation" }
+		{ "name": "physics-native", "path": "../cpp-physics-simulation" },
+		{ "name": "practice", "path": "../bwinkeler-practice" }
 	],
 	"settings": {
 		"files.trimTrailingWhitespace": true,

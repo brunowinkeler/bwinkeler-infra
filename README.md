@@ -31,11 +31,14 @@ bwinkeler-infra/
 │   └── restore-database.sh    # download → verify → decrypt → restore
 ├── scripts/
 │   ├── bootstrap-host.sh      # dirs + prerequisites + networks
+│   ├── bootstrap-workspace.ps1 # workstation: clone every repo side by side
+│   ├── repos.json             # clone manifest consumed by bootstrap-workspace
 │   ├── create-networks.sh     # idempotent bw-edge / bw-data
 │   ├── validate.sh            # compose + Caddy config + networks (read-only)
 │   └── deploy.sh              # bring up / update infra (never down -v)
 ├── templates/                 # *.env.example + site.caddy
-└── docs/                      # RUNBOOK, DISASTER_RECOVERY, inventory
+└── docs/                      # RUNBOOK, DISASTER_RECOVERY, inventory,
+                               # REPOSITORIES, IMPROVEMENTS, prompt archive
 ```
 
 ## Quick start (host)
@@ -60,7 +63,15 @@ Full procedures are in [`docs/RUNBOOK.md`](./docs/RUNBOOK.md).
   network.
 - Never `docker compose down -v` the infra — it destroys `bw-postgres-data`.
 - The scripts require Docker Compose v2 and are meant to run on the Linux host
-  (Ubuntu LTS), not on a workstation.
+  (Ubuntu LTS), not on a workstation. The one exception is
+  `scripts/bootstrap-workspace.ps1`, which only clones repositories.
+
+## Local workspace
+
+The repositories are independent and sit side by side in an aggregator folder
+that is not a Git repository. To recreate it, run
+`scripts/bootstrap-workspace.ps1` and open `bwinkeler.code-workspace`. See
+[`docs/REPOSITORIES.md`](./docs/REPOSITORIES.md).
 
 ## Currently onboarded
 

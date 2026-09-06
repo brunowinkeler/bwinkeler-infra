@@ -36,6 +36,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | --- | --- | --- | --- | --- | --- | --- |
 | `physics` | `physics.bwinkeler.com` | `bwinkeler-physics` | `brunowinkeler/bwinkeler-physics` | none | none | onboarding |
 | `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | active |
+| `practice` | `practice.bwinkeler.com` | `bwinkeler-practice` | `brunowinkeler/bwinkeler-music-practice` | browser IndexedDB only | none | onboarding |
 
 ## DNS (Cloudflare)
 
@@ -44,6 +45,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | `bwinkeler.com` | Cloudflare Pages | — | portfolio |
 | `physics.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; no VPS or Caddy route |
 | `play.bwinkeler.com` | Cloudflare Pages | — | active custom domain; no VPS or Caddy route |
+| `practice.bwinkeler.com` | Cloudflare Pages | — | planned custom domain; not registered yet, so the name is still negotiable |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
 
 ## Backups

@@ -1,0 +1,48 @@
+{
+  "$comment": "Single source of truth for bootstrapping the local workspace. See docs/REPOSITORIES.md.",
+  "repositories": [
+    {
+      "directory": "bwinkeler-infra",
+      "url": "git@github.com:brunowinkeler/bwinkeler-infra.git",
+      "visibility": "private",
+      "role": "infrastructure and canonical platform contract"
+    },
+    {
+      "directory": "bwinkeler-portfolio",
+      "url": "git@github.com:brunowinkeler/bwinkeler-portfolio.git",
+      "visibility": "public",
+      "role": "static portfolio on bwinkeler.com"
+    },
+    {
+      "directory": "bwinkeler-lists",
+      "url": "git@github.com:brunowinkeler/bwinkeler-lists.git",
+      "visibility": "public",
+      "role": "Listly — VPS application on lists.bwinkeler.com"
+    },
+    {
+      "directory": "bwinkeler-physics",
+      "url": "git@github.com:brunowinkeler/bwinkeler-physics.git",
+      "visibility": "public",
+      "role": "Physics Lab web build; pins cpp-physics-simulation as a submodule",
+      "recurseSubmodules": true
+    },
+    {
+      "directory": "cpp-physics-simulation",
+      "url": "git@github.com:brunowinkeler/cpp-physics-simulation.git",
+      "visibility": "public",
+      "role": "canonical native physics source; edited here, consumed by bwinkeler-physics"
+    },
+    {
+      "directory": "bwinkeler-keyplay",
+      "url": "git@github.com:brunowinkeler/bwinkeler-keyplay.git",
+      "visibility": "public",
+      "role": "KeyPlay — static playground on play.bwinkeler.com"
+    },
+    {
+      "directory": "bwinkeler-practice",
+      "url": "git@github.com:brunowinkeler/bwinkeler-music-practice.git",
+      "visibility": "public",
+      "role": "Practice Companion — service id `practice`; the directory name intentionally differs from the repository name"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Gostaria de criar um site web que quando minha filha digite qualquer tecla do teclado apareça um emoji ou a letra associada à tecla. Além disso quando ela mover o mouse deve ser possível visualizar o rastro do mouse. Como inspiração eu tenho o site https://tinyfingers.net/ que a proposta é a mesma, sendo que atualmente quando eu aperto a tecla de iniciar, ou a tecla de menun de contexto a aplicação é interrompida. Gostaria que essas teclas fossem desabilitadas para que só seja possível sair via esc ou com algum comando específico tipo (Ctrl + alguma tecla). é possível? Precisa de VPS, é possível ser apenas estática? É possível usar a ideia de fazer uma aplicação em C++ e depois servir de maneira estática usando WebAssembly?
+
+---
+
+Gostaria de mais ideias para expandir meus projetos pessoais associados ao dominio bwinkeler.com. Quero algo que seja útil para minha vida e simples. Caso tenha ideias mais complexas, que pelo menos ela cubram aspectos de segurança para que eu não sofra com hackers e pessoas mal intencionadas tentando invadir as aplicações.
