@@ -48,8 +48,9 @@
 
 ## 2. Infrastructure repository (`bwinkeler-infra`)
 
-- [ ] **P2** Add a CI workflow: `shellcheck` + `caddy validate` +
-      `docker compose config`.
+- [x] **P2** Add a CI workflow: `shellcheck` + `caddy validate` +
+      `docker compose config` (plus `actionlint`) — see
+      [`../.github/workflows/ci.yaml`](../.github/workflows/ci.yaml).
 - [ ] **P2** Set `mem_limit`/`cpus` in `compose.prod.yaml` (Caddy/PostgreSQL)
       **after measuring** (4 GB VPS).
 - [ ] **P3** Document a PostgreSQL major upgrade procedure (backup first,
