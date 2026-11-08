@@ -47,7 +47,10 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 Aquarium data is short-lived by design: an aquarium and its images are deleted
 when its TV ends it or 4 hours after the TV disconnects, so nothing is backed up
 (aquarium ADR 001 and ADR 003). First deployed by hand with `wrangler deploy` on
-2026-11-08; the backend is live, the TV app and the PWA are not built yet.
+2026-11-08; since v0.2.0 every `v*` tag deploys through the repository's
+`deploy.yaml`. The phone PWA (`/`, with printable templates), the TV browser
+build (`/tv/`) and the API are live; the webOS TV package waits for the TV
+spike, so the status stays `onboarding`.
 
 ## DNS (Cloudflare)
 
