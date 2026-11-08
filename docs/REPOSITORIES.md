@@ -17,7 +17,8 @@ bwinkeler/                     # aggregator folder — NOT a Git repository
 ├── bwinkeler-physics/
 ├── cpp-physics-simulation/
 ├── bwinkeler-keyplay/
-└── bwinkeler-practice/
+├── bwinkeler-practice/
+└── bwinkeler-aquarium/
 ```
 
 The aggregator folder holds nothing of its own. Every document belongs to the

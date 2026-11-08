@@ -38,6 +38,17 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | `keyplay` | `play.bwinkeler.com` | `bwinkeler-keyplay` | `brunowinkeler/bwinkeler-keyplay` | none | none | active |
 | `practice` | `practice.bwinkeler.com` | `bwinkeler-practice` | `brunowinkeler/bwinkeler-music-practice` | browser IndexedDB only | none | onboarding |
 
+## Cloudflare Workers applications
+
+| Service ID | Domain | Worker | Repository | Persistent state | Backup | VPS dependency | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `aquarium` | `aquarium.bwinkeler.com` | `bwinkeler-aquarium` | `brunowinkeler/bwinkeler-aquarium` | Durable Objects (SQLite) and the private R2 bucket `bwinkeler-aquarium-files` | none | none | onboarding |
+
+Aquarium data is short-lived by design: an aquarium and its images are deleted
+when its TV ends it or 4 hours after the TV disconnects, so nothing is backed up
+(aquarium ADR 001 and ADR 003). First deployed by hand with `wrangler deploy` on
+2026-11-08; the backend is live, the TV app and the PWA are not built yet.
+
 ## DNS (Cloudflare)
 
 | Record | Target | Proxy | Notes |
@@ -47,6 +58,7 @@ App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`
 | `play.bwinkeler.com` | Cloudflare Pages | — | active custom domain; no VPS or Caddy route |
 | `practice.bwinkeler.com` | Cloudflare Pages | — | not registered yet; the project serves `bwinkeler-practice.pages.dev` and the name is still negotiable |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
+| `aquarium.bwinkeler.com` | Worker Custom Domain (`bwinkeler-aquarium`) | — | active since 2026-11-08; no VPS or Caddy route |
 
 ## Backups
 

@@ -43,6 +43,12 @@
       "url": "git@github.com:brunowinkeler/bwinkeler-music-practice.git",
       "visibility": "public",
       "role": "Practice Companion — service id `practice`; the directory name intentionally differs from the repository name"
+    },
+    {
+      "directory": "bwinkeler-aquarium",
+      "url": "git@github.com:brunowinkeler/bwinkeler-aquarium.git",
+      "visibility": "public",
+      "role": "Aquarium — Cloudflare Worker on aquarium.bwinkeler.com and a webOS TV app"
     }
   ]
 }

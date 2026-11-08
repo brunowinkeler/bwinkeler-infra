@@ -21,3 +21,4 @@ repositories.
 | `physics.md` | Physics Lab |
 | `misc.md` | KeyPlay's original idea and a general platform ideas prompt |
 | `supermarkets.md` | Feasibility study for a Dutch supermarket price comparison — no repository exists |
+| `aquarium.md` | Aquarium: the original phone-to-TV drawing idea and the follow-ups that shaped the TV-created, short-lived aquarium |
