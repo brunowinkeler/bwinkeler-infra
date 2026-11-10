@@ -48,8 +48,8 @@ Aquarium data is short-lived by design: an aquarium and its images are deleted
 when its TV ends it or 4 hours after the TV disconnects, so nothing is backed up
 (aquarium ADR 001 and ADR 003). First deployed by hand with `wrangler deploy` on
 2026-11-08; since v0.2.0 every `v*` tag deploys through the repository's
-`deploy.yaml`. The phone PWA (`/`, with printable templates), the TV browser
-builds (`/tv/` for a remote, `/pc/` for a mouse or touch screen) and the API are
+`deploy.yaml`. The aquarium screen (`/` for a mouse or touch screen, `/tv/` for a
+remote), the phone PWA (`/join/`, with printable templates) and the API are
 live; the webOS TV package waits for the TV spike, so the status stays
 `onboarding`.
 
