@@ -22,7 +22,7 @@ bwinkeler-infra/
 ├── .env.example               # image version pins (copy to .env)
 ├── caddy/
 │   ├── Caddyfile              # global block + import sites/*
-│   └── sites/lists.caddy      # per-domain route fragments
+│   └── sites/*.caddy          # per-domain route fragments (lists, finances)
 ├── postgres/
 │   ├── provision-app.sh       # create per-app DB + runtime/migrator roles
 │   └── revoke-app.sh          # decommission (destructive, guarded)
@@ -78,5 +78,6 @@ that is not a Git repository. To recreate it, run
 | App | Domain | Database | Status |
 | --- | --- | --- | --- |
 | [lists](../bwinkeler-lists) | `lists.bwinkeler.com` | `lists_db` | onboarding |
+| [finances](../bwinkeler-finances) | `finances.bwinkeler.com` | `finances_db` | onboarding |
 
 See [`docs/inventory.md`](./docs/inventory.md).

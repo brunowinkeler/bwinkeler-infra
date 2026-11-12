@@ -10,7 +10,8 @@
 		{ "name": "physics", "path": "../bwinkeler-physics" },
 		{ "name": "physics-native", "path": "../cpp-physics-simulation" },
 		{ "name": "practice", "path": "../bwinkeler-practice" },
-		{ "name": "aquarium", "path": "../bwinkeler-aquarium" }
+		{ "name": "aquarium", "path": "../bwinkeler-aquarium" },
+		{ "name": "finances", "path": "../bwinkeler-finances" }
 	],
 	"settings": {
 		"files.trimTrailingWhitespace": true,

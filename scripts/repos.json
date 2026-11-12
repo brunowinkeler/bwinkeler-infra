@@ -49,6 +49,12 @@
       "url": "git@github.com:brunowinkeler/bwinkeler-aquarium.git",
       "visibility": "public",
       "role": "Aquarium — Cloudflare Worker on aquarium.bwinkeler.com and a webOS TV app"
+    },
+    {
+      "directory": "bwinkeler-finances",
+      "url": "git@github.com:brunowinkeler/bwinkeler-finances.git",
+      "visibility": "private",
+      "role": "bwinkeler finances — household finance platform on finances.bwinkeler.com, behind Cloudflare Access"
     }
   ]
 }

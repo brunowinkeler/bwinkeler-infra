@@ -1,0 +1,35 @@
+# finances.bwinkeler.com — bwinkeler finances (service_id: finances)
+#
+# Same-origin frontend + API, no WebSocket. Cloudflare Access sits in front of
+# this hostname and the API rejects requests without a valid Access token.
+# Upstream aliases resolve on the shared bw-edge network:
+#   finances-web:80    static React SPA (served by Caddy inside the image)
+#   finances-api:8080  Fastify HTTP API (/api)
+# Contract: bwinkeler-finances/docs/SERVICE_MANIFEST.md
+finances.bwinkeler.com {
+	encode zstd gzip
+
+	# HTTP API. The prefix is preserved; the backend expects /api.
+	@api path /api /api/*
+	handle @api {
+		reverse_proxy finances-api:8080
+	}
+
+	# Everything else is the SPA (with its own index.html fallback and CSP).
+	handle {
+		reverse_proxy finances-web:80
+	}
+
+	# Baseline headers; the application owns its CSP. Never cache /api
+	# (ARCHITECTURE.md §9.5).
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}

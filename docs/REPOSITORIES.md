@@ -18,7 +18,8 @@ bwinkeler/                     # aggregator folder — NOT a Git repository
 ├── cpp-physics-simulation/
 ├── bwinkeler-keyplay/
 ├── bwinkeler-practice/
-└── bwinkeler-aquarium/
+├── bwinkeler-aquarium/
+└── bwinkeler-finances/            # private
 ```
 
 The aggregator folder holds nothing of its own. Every document belongs to the

@@ -27,8 +27,16 @@ External networks (infra-owned): `bw-edge`, `bw-data`.
 | Service ID | Domain | Compose project | Database | Roles | App networks | Backup | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `lists` | `lists.bwinkeler.com` | `bw-lists` | `lists_db` | `lists_runtime`, `lists_migrator` | `bw-edge`, `bw-data`, `bw-lists-private` | daily | onboarding |
+| `finances` | `finances.bwinkeler.com` | `bw-finances` | `finances_db` | `finances_runtime`, `finances_migrator` | `bw-edge`, `bw-data`, `bw-finances-private` | daily | onboarding |
 
-App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`.
+App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`,
+`ghcr.io/brunowinkeler/finances-web`, `ghcr.io/brunowinkeler/finances-api` (finances
+images are private; root Docker on the host pulls them with a `read:packages` token).
+
+Finances is the only application behind **Cloudflare Access**: a self-hosted
+Access application on `finances.bwinkeler.com` with Google login and an Allow
+policy for the two household addresses. Its API rejects requests without a valid
+Access token, so the Caddy route alone does not expose it.
 
 ## Cloudflare Pages applications
 
@@ -62,6 +70,7 @@ live; the webOS TV package waits for the TV spike, so the status stays
 | `play.bwinkeler.com` | Cloudflare Pages | — | active custom domain; no VPS or Caddy route |
 | `practice.bwinkeler.com` | Cloudflare Pages | — | not registered yet; the project serves `bwinkeler-practice.pages.dev` and the name is still negotiable |
 | `lists.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)` |
+| `finances.bwinkeler.com` | VPS `A`/`AAAA` | proxied | TLS `Full (strict)`; Cloudflare Access application in front |
 | `aquarium.bwinkeler.com` | Worker Custom Domain (`bwinkeler-aquarium`) | — | active since 2026-11-08; no VPS or Caddy route |
 
 ## Backups
@@ -69,6 +78,7 @@ live; the webOS TV package waits for the TV spike, so the status stays
 | Database | Class | Location | Retention |
 | --- | --- | --- | --- |
 | `lists_db` | daily | R2 `bwinkeler-backups/postgres/{daily,weekly,monthly}` | 7 / 4 / 6 |
+| `finances_db` | daily | R2 `bwinkeler-backups/postgres/{daily,weekly,monthly}` | 7 / 4 / 6 |
 
 ## Cloudflare cache rules
 
