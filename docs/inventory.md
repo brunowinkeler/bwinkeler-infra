@@ -27,7 +27,7 @@ External networks (infra-owned): `bw-edge`, `bw-data`.
 | Service ID | Domain | Compose project | Database | Roles | App networks | Backup | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `lists` | `lists.bwinkeler.com` | `bw-lists` | `lists_db` | `lists_runtime`, `lists_migrator` | `bw-edge`, `bw-data`, `bw-lists-private` | daily | onboarding |
-| `finances` | `finances.bwinkeler.com` | `bw-finances` | `finances_db` | `finances_runtime`, `finances_migrator` | `bw-edge`, `bw-data`, `bw-finances-private` | daily | onboarding |
+| `finances` | `finances.bwinkeler.com` | `bw-finances` | `finances_db` | `finances_runtime`, `finances_migrator` | `bw-edge`, `bw-data`, `bw-finances-private` | daily | active |
 
 App images: `ghcr.io/brunowinkeler/lists-web`, `ghcr.io/brunowinkeler/lists-api`,
 `ghcr.io/brunowinkeler/finances-web`, `ghcr.io/brunowinkeler/finances-api` (finances
