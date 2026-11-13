@@ -37,10 +37,14 @@
 - [ ] **P1** Add the existing Caddy fragment (`caddy/sites/lists.caddy`) and
       `caddy reload`; validate HTTPS, login, operations, and the WebSocket from
       outside.
-- [ ] **P1** **Backup**: install `/etc/bwinkeler/backup.env`, generate the `age`
+- [x] **P1** **Backup**: install `/etc/bwinkeler/backup.env`, generate the `age`
       key (keep the **private key off the VPS**), configure rclone → R2 (token
       scoped to the bucket), schedule `backup-databases.sh` (cron), and **run a
-      restore test**.
+      restore test**. Done 2026-11-13 (see inventory §Backups). Until then no
+      backup had ever run: the R2 bucket did not exist.
+- [ ] **P3** Ubuntu's `rclone` 1.60 answers `501 NotImplemented` on the first
+      upload attempt to R2 and succeeds on the retry; install a current rclone
+      from rclone.org to silence it.
 - [ ] **P2** Record the release plus its rollback target (previous tag) in the
       infra inventory.
 

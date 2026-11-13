@@ -80,6 +80,14 @@ live; the webOS TV package waits for the TV spike, so the status stays
 | `lists_db` | daily | R2 `bwinkeler-backups/postgres/{daily,weekly,monthly}` | 7 / 4 / 6 |
 | `finances_db` | daily | R2 `bwinkeler-backups/postgres/{daily,weekly,monthly}` | 7 / 4 / 6 |
 
+Root crontab runs `backup/backup-databases.sh` at 02:30 UTC (log
+`/var/log/bw-backup.log`). The R2 bucket `bwinkeler-backups` (location WEUR) and
+the first backups were created on 2026-11-13; before that no backup had ever run.
+The `age` private key is kept off the VPS by the owner. Last restore test:
+2026-11-13, both dumps downloaded, checksum-verified, decrypted on the
+workstation and restored into a scratch PostgreSQL 16 (`lists_db` 9 tables,
+`finances_db` 21 tables).
+
 ## Cloudflare cache rules
 
 None configured. Document any rule here (ARCHITECTURE.md §10.4).
